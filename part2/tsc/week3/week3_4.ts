@@ -36,22 +36,32 @@ this.setRandomPosition = function (side, face) {
     return face;
 };
 
-function setUpGame() {
+this.setUpLeftSide = function (){
     var leftSide = document.getElementById("leftSide");
-    var rightSide = document.getElementById("rightSide");
 
     console.log("generating faces for left side");
     var faces = this.generateFaces();
-
     console.log("calculating positions");
     faces.forEach(function (face){
         this.setRandomPosition(leftSide, face);
         leftSide.appendChild(face);
     });
+    return leftSide;
+};
+
+this.setUpRightSide = function (leftSide){
+    var rightSide = document.getElementById("rightSide");
 
     console.log("cloning left to right side");
     var leftClone = leftSide.cloneNode(true);
-    var lastChild = leftClone.childNodes[leftClone.childNodes.length-1];
-    leftClone.removeChild(lastChild);
+    leftClone.removeChild(leftClone.lastChild);
     rightSide.appendChild(leftClone);
+    return rightSide;
+};
+
+function setUpGame() {
+    var leftSide = this.setUpLeftSide();
+    var rightSide = this.setUpRightSide(leftSide);
+    var theBody = document.getElementsByTagName("body")[0];
+
 }
