@@ -37,15 +37,21 @@ this.setRandomPosition = function (side, face) {
 };
 
 function setUpGame() {
-    var theLeftSide =
-        document.getElementById("leftSide");
-    console.log("display left faces on div '" + theLeftSide + "'");
-    console.log("generating faces");
+    var leftSide = document.getElementById("leftSide");
+    var rightSide = document.getElementById("rightSide");
+
+    console.log("generating faces for left side");
     var faces = this.generateFaces();
 
     console.log("calculating positions");
     faces.forEach(function (face){
-        this.setRandomPosition(theLeftSide, face);
-        theLeftSide.appendChild(face);
+        this.setRandomPosition(leftSide, face);
+        leftSide.appendChild(face);
     });
+
+    console.log("cloning left to right side");
+    var leftClone = leftSide.cloneNode(true);
+    var lastChild = leftClone.childNodes[leftClone.childNodes.length-1];
+    leftClone.removeChild(lastChild);
+    rightSide.appendChild(leftClone);
 }
