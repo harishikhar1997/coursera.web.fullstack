@@ -1,6 +1,6 @@
-var borderStrength = 2;
+var numberOfFaces = 5;
 var smileCreationCredentials = {
-    numberOfFaces: 5,
+    numberOfFaces: numberOfFaces,
     path: 'smile.png',
     width: '100',
     height: '100'
@@ -19,12 +19,17 @@ this.buildFace = function(){
     return faceImage;
 };
 
-this.generateFaces = function () {
+var generateFaces = function (leftSide) {
     var faces = [];
     for(var i = 0; i < smileCreationCredentials.numberOfFaces; i++){
         var face = this.buildFace();
         faces.push(face);
     }
+    console.log("calculating positions");
+    faces.forEach(function (face){
+        this.setRandomPosition(leftSide, face);
+        leftSide.appendChild(face);
+    });
     return faces;
 };
 
@@ -36,32 +41,49 @@ this.setRandomPosition = function (side, face) {
     return face;
 };
 
-this.setUpLeftSide = function (){
-    var leftSide = document.getElementById("leftSide");
+var resetLeftSide = function (leftSide) {
+    console.log("Resetting faces");
+    for(var idx in leftSide.childNodes){
+        var child = leftSide.childNodes.item(idx);
+        leftSide.removeChild(child);
+    }
 
-    console.log("generating faces for left side");
-    var faces = this.generateFaces();
-    console.log("calculating positions");
-    faces.forEach(function (face){
-        this.setRandomPosition(leftSide, face);
-        leftSide.appendChild(face);
-    });
     return leftSide;
 };
 
-this.setUpRightSide = function (leftSide){
+this.setUpLeftSide = function (){
+    var leftSide = document.getElementById("leftSide");
+    console.log("generating '"+smileCreationCredentials.numberOfFaces+"' faces for left side");
+    var faces = this.generateFaces(leftSide);
+    return leftSide;
+};
+
+var setUpRightSide = function (leftSide){
     var rightSide = document.getElementById("rightSide");
 
     console.log("cloning left to right side");
     var leftClone = leftSide.cloneNode(true);
     leftClone.removeChild(leftClone.lastChild);
     rightSide.appendChild(leftClone);
+    nextLevel(leftSide, rightSide);
     return rightSide;
+};
+var nextLevel= function(leftSide, rightSide){
+    leftSide.lastChild.onclick=
+        function nextLevel(event){
+            event.stopPropagation();
+            smileCreationCredentials.numberOfFaces += numberOfFaces;
+            leftSide = resetLeftSide(leftSide);
+            var faces = generateFaces(leftSide);
+            rightSide.removeChild(rightSide.firstChild);
+            rightSide = setUpRightSide(leftSide);
+        };
 };
 
 function setUpGame() {
     var leftSide = this.setUpLeftSide();
     var rightSide = this.setUpRightSide(leftSide);
     var theBody = document.getElementsByTagName("body")[0];
+
 
 }
