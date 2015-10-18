@@ -1,7 +1,8 @@
 
 var gameCredentials = {
     numberOfFaces: 5,
-    startLevel: '1'
+    startLevel: '1',
+    timeout: 40
 };
 
 var gameResults = {
@@ -15,6 +16,12 @@ var smileCreationCredentials = {
     height: '100'
 };
 
+var errorCredentials = {
+    gif: 'http://i.imgur.com/yo1NQ24.gif',
+    width: '500',
+    height: '500'
+};
+
 function calculateRandomValue(value) {
     var idx = Math.random() * value;
     return Math.floor(idx);
@@ -26,6 +33,14 @@ this.buildFace = function(){
     faceImage.setAttribute('height', smileCreationCredentials.height);
     faceImage.setAttribute('width', smileCreationCredentials.width);
     return faceImage;
+};
+
+var buildGameOverImg = function(){
+    var img = document.createElement("img");
+    img.setAttribute('src', errorCredentials.gif);
+    img.setAttribute('height', errorCredentials.height);
+    img.setAttribute('width', errorCredentials.width);
+    return img;
 };
 
 var generateFaces = function (leftSide) {
@@ -92,15 +107,19 @@ var nextLevel= function(leftSide, rightSide){
 
 this.initialize = function() {
     var startValue = prompt("Start at which level?", gameCredentials.startLevel);
+    var gameOver = document.getElementById("gameOver");
+    if(gameOver.hasChildNodes()){
+        console.log("removing game over gif");
+        gameOver.removeChild(gameOver.firstChild);
+    }
 
     if (startValue == null) {
         alert("Good Bye!");
         return false;
     } else {
         gameCredentials.startLevel = startValue;
-        gameCredentials.numberOfFaces *= parseInt(startValue);
-        console.log("Start at level: " +startValue + "with " + gameCredentials.numberOfFaces +" faces.");
-        smileCreationCredentials.numberOfFaces=gameCredentials.numberOfFaces;
+        console.log("Start at level: " +startValue + " with " + gameCredentials.numberOfFaces +" faces.");
+        smileCreationCredentials.numberOfFaces*=parseInt(startValue);
         return true;
     }
 };
@@ -109,24 +128,21 @@ function setUpGame() {
     var doPlay = this.initialize();
     if(doPlay){
         var leftSide = this.setUpLeftSide();
-        leftSide.add
         var rightSide = this.setUpRightFromLeftSide(leftSide);
         var theBody = document.getElementsByTagName("body")[0];
 
         theBody.onclick = function gameOver() {
             var reachedLevel = parseInt(gameCredentials.startLevel)+gameResults.finishedLevels;
-            var doAgain = confirm("Game Over!\n You reached level: '" + reachedLevel + "' and passed '" + gameResults.finishedLevels+"' level(s)." +
-                "\nTry again?");
+            var gameOver = document.getElementById("gameOver");
+            gameOver.appendChild(buildGameOverImg());
+            setTimeout(gameCredentials.timeout); // timeout needed, cause of loading the gif
+            alert("Game Over!\n You reached level: '" + reachedLevel + "' and passed '" + gameResults.finishedLevels+"' level(s).");
+
+            smileCreationCredentials.numberOfFaces = gameCredentials.numberOfFaces;
             gameResults.finishedLevels = 0;
             gameCredentials.startLevel = '1';
             theBody.onclick = null;
             leftSide.lastChild.onclick = null;
-            if( doAgain ){
-                setUpGame();
-            }else{
-                alert("Good Bye!");
-            }
-
         };
     }
 }
