@@ -1,4 +1,5 @@
 var numberOfFaces = 5;
+var levels = 1;
 var smileCreationCredentials = {
     numberOfFaces: numberOfFaces,
     path: 'smile.png',
@@ -41,7 +42,7 @@ this.setRandomPosition = function (side, face) {
     return face;
 };
 
-var resetLeftSide = function (leftSide) {
+var resetSide = function (leftSide) {
     console.log("Resetting faces");
     for(var idx in leftSide.childNodes){
         var child = leftSide.childNodes.item(idx);
@@ -58,7 +59,7 @@ this.setUpLeftSide = function (){
     return leftSide;
 };
 
-var setUpRightSide = function (leftSide){
+var setUpRightFromLeftSide = function (leftSide){
     var rightSide = document.getElementById("rightSide");
 
     console.log("cloning left to right side");
@@ -71,19 +72,32 @@ var setUpRightSide = function (leftSide){
 var nextLevel= function(leftSide, rightSide){
     leftSide.lastChild.onclick=
         function nextLevel(event){
+            levels++;
             event.stopPropagation();
             smileCreationCredentials.numberOfFaces += numberOfFaces;
-            leftSide = resetLeftSide(leftSide);
+            leftSide = resetSide(leftSide);
             var faces = generateFaces(leftSide);
             rightSide.removeChild(rightSide.firstChild);
-            rightSide = setUpRightSide(leftSide);
+            rightSide = setUpRightFromLeftSide(leftSide);
         };
 };
 
 function setUpGame() {
     var leftSide = this.setUpLeftSide();
-    var rightSide = this.setUpRightSide(leftSide);
+    var rightSide = this.setUpRightFromLeftSide(leftSide);
     var theBody = document.getElementsByTagName("body")[0];
 
+    theBody.onclick = function gameOver() {
+        alert("Game Over!\n You reached level: " + levels);
+        theBody.onclick = null;
+        leftSide.lastChild.onclick = null;
+        var startValue = prompt("New Try?\nStart at which level?","1");
+        console.log(startValue);
+        if(startValue == null){
+            console.log("quit");
+        }else{
+            console.log("do again")
+        }
+    };
 
 }
