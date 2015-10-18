@@ -51,7 +51,6 @@ function setUpGame() {
 
     console.log("cloning left to right side");
     var leftClone = leftSide.cloneNode(true);
-    var lastChild = leftClone.childNodes[leftClone.childNodes.length-1];
-    leftClone.removeChild(lastChild);
+    leftClone.removeChild(leftClone.lastChild);
     rightSide.appendChild(leftClone);
 }
