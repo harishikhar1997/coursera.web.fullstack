@@ -1,7 +1,15 @@
-var numberOfFaces = 5;
-var levels = 1;
+
+var gameCredentials = {
+    numberOfFaces: 5,
+    startLevel: '1'
+};
+
+var gameResults = {
+    finishedLevels: 0
+};
+
 var smileCreationCredentials = {
-    numberOfFaces: numberOfFaces,
+    numberOfFaces: 5,
     path: 'smile.png',
     width: '100',
     height: '100'
@@ -72,9 +80,9 @@ var setUpRightFromLeftSide = function (leftSide){
 var nextLevel= function(leftSide, rightSide){
     leftSide.lastChild.onclick=
         function nextLevel(event){
-            levels++;
+            gameResults.finishedLevels++;
             event.stopPropagation();
-            smileCreationCredentials.numberOfFaces += numberOfFaces;
+            smileCreationCredentials.numberOfFaces += gameCredentials.numberOfFaces;
             leftSide = resetSide(leftSide);
             var faces = generateFaces(leftSide);
             rightSide.removeChild(rightSide.firstChild);
@@ -82,22 +90,43 @@ var nextLevel= function(leftSide, rightSide){
         };
 };
 
+this.initialize = function() {
+    var startValue = prompt("Start at which level?", gameCredentials.startLevel);
+
+    if (startValue == null) {
+        alert("Good Bye!");
+        return false;
+    } else {
+        gameCredentials.startLevel = startValue;
+        gameCredentials.numberOfFaces *= parseInt(startValue);
+        console.log("Start at level: " +startValue + "with " + gameCredentials.numberOfFaces +" faces.");
+        smileCreationCredentials.numberOfFaces=gameCredentials.numberOfFaces;
+        return true;
+    }
+};
+
 function setUpGame() {
-    var leftSide = this.setUpLeftSide();
-    var rightSide = this.setUpRightFromLeftSide(leftSide);
-    var theBody = document.getElementsByTagName("body")[0];
+    var doPlay = this.initialize();
+    if(doPlay){
+        var leftSide = this.setUpLeftSide();
+        leftSide.add
+        var rightSide = this.setUpRightFromLeftSide(leftSide);
+        var theBody = document.getElementsByTagName("body")[0];
 
-    theBody.onclick = function gameOver() {
-        alert("Game Over!\n You reached level: " + levels);
-        theBody.onclick = null;
-        leftSide.lastChild.onclick = null;
-        var startValue = prompt("New Try?\nStart at which level?","1");
-        console.log(startValue);
-        if(startValue == null){
-            console.log("quit");
-        }else{
-            console.log("do again")
-        }
-    };
+        theBody.onclick = function gameOver() {
+            var reachedLevel = parseInt(gameCredentials.startLevel)+gameResults.finishedLevels;
+            var doAgain = confirm("Game Over!\n You reached level: '" + reachedLevel + "' and passed '" + gameResults.finishedLevels+"' level(s)." +
+                "\nTry again?");
+            gameResults.finishedLevels = 0;
+            gameCredentials.startLevel = '1';
+            theBody.onclick = null;
+            leftSide.lastChild.onclick = null;
+            if( doAgain ){
+                setUpGame();
+            }else{
+                alert("Good Bye!");
+            }
 
+        };
+    }
 }
