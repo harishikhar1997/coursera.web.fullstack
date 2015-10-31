@@ -14,9 +14,12 @@
     <link href="css/mystyles.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap-social.css" rel="stylesheet">
+    <style>
+        .navbar-inverse { background: #303F9F; color: #fff; }
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -55,6 +58,16 @@
                     <i class="fa fa-envelope-o" aria-hidden="true"></i>
                     Contact</a></li>
             </ul>
+            <form class="navbar-form navbar-right" role="form">
+                <div class="form-group">
+                    <input type="email" class="form-control" placeholder="Email"/>
+                    <input type="password" class="form-control" placeholder="Password"/>
+                    <input type="checkbox" id="remember" class="form-control"/>
+                    <label for="remember" class="control-label" >Remember me</label>
+                    <button type="submit" class="btn btn-info">Sign In</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </nav>
