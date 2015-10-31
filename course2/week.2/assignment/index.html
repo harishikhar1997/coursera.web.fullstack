@@ -15,11 +15,14 @@
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/bootstrap-social.css" rel="stylesheet">
     <style>
-        .navbar-inverse { background: #303F9F; color: #fff; }
+        .navbar-inverse {
+            background: #303F9F;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -63,7 +66,7 @@
                     <input type="email" class="form-control" placeholder="Email"/>
                     <input type="password" class="form-control" placeholder="Password"/>
                     <input type="checkbox" id="remember" class="form-control"/>
-                    <label for="remember" class="control-label" >Remember me</label>
+                    <label for="remember" class="control-label">Remember me</label>
                     <button type="submit" class="btn btn-info">Sign In</button>
                 </div>
             </form>
@@ -87,7 +90,7 @@
                 <p style="padding:20px;"></p>
                 <img src="img/logo.png" class="img-responsive">
             </div>
-            <div class="col-xs-12 col-sm-2" >
+            <div class="col-xs-12 col-sm-2">
                 <p style="padding:40px;"></p>
                 <a href="#reservation" class="btn btn-block btn-warning btn-lg" role="button">Reserve Table</a>
             </div>
@@ -119,10 +122,12 @@
                         <span class="label label-danger label-xs">Hot</span>
                         <span class="badge">$4.99</span>
                     </h2>
+
                     <p>A unique combination of Indian Uthappam (pancake) and
                         Italian pizza, topped with Cerignola olives, ripe vine
                         cherry tomatoes, Vidalia onion, Guntur chillies and
                         Buffalo Paneer.</p>
+
                     <p><a class="btn btn-primary btn-xs" href="#">More &raquo;</a></p>
                 </div>
             </div>
@@ -164,68 +169,99 @@
                 <div class="media-body">
                     <h2 class="media-heading">Alberto Somayya</h2>
                     <h4>Executive Chef</h4>
+
                     <p>Award winning three-star Michelin chef with wide
                         International experience having worked closely with
                         whos-who in the culinary world, he specializes in
                         creating mouthwatering Indo-Italian fusion experiences.
                     </p>
+
                     <p><a class="btn btn-primary btn-xs" href="#">More &raquo;</a></p>
                 </div>
             </div>
         </div>
     </div>
     <div class="row row-content" id="reservation">
+        <div class="col-xs-12 col-sm-3">
+            <h3>Reserve a Table</h3>
+        </div>
+        <div class="col-xs-12 col-sm-9">
+            <form class="form-horizontal" role="form">
+                <div class="row form-group">
+                    <div class="col-xs-12 col-sm-3">
+                        Number of Guests
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <div class="row">
+                            <input type="radio" id="radio1" class="col-sx-1">
+                            <label for="radio1" class="col-sx-1">1</label>
+                            <input type="radio" id="radio2" class="col-sx-1">
+                            <label for="radio2" class="col-sx-1">2</label>
+                            <input type="radio" id="radio3" class="col-sx-1">
+                            <label for="radio3" class="col-sx-1">3</label>
+                            <input type="radio" id="radio4" class="col-sx-1">
+                            <label for="radio4" class="col-sx-1">4</label>
+                            <input type="radio" id="radio5" class="col-sx-1">
+                            <label for="radio5" class="col-sx-1">5</label>
+                            <input type="radio" id="radio6" class="col-sx-1">
+                            <label for="radio6" class="col-sx-1">6</label>
+                        </div>
+                    </div>
 
-    </div>
-</div>
+                </div>
+            </form>
 
-<footer>
-    <div class="container">
-        <div class="row row-footer">
-            <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
-                <h5>Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Menu</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="col-xs-6 col-sm-5">
-                <h5>Our Address</h5>
-                <address>
-                    121, Clear Water Bay Road<br>
-                    Clear Water Bay, Kowloon<br>
-                    HONG KONG<br>
-                    <i class="fa fa-phone"></i>: +852 1234 5678<br>
-                    <i class="fa fa-fax"></i>: +852 8765 4321<br>
-                    <i class="fa fa-envelope"></i>:
-                    <a href="mailto:confusion@food.net">confusion@food.net</a>
-                </address>
-            </div>
-            <div class="nav navbar-nav" style="padding: 40px 10px;">
-                <a class="btn btn-social-icon btn-google-plus" href="http://google.com/+"><i
-                        class="fa fa-google-plus"></i></a>
-                <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i
-                        class="fa fa-facebook"></i></a>
-                <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i
-                        class="fa fa-linkedin"></i></a>
-                <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
-                <a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube"></i></a>
-                <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
-            </div>
-            <div class="col-xs-12">
-                <p style="padding:10px;"></p>
 
-                <p align=center>Â© Copyright 2015 Ristorante Con Fusion</p>
-            </div>
         </div>
     </div>
-</footer>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
+
+    <footer>
+        <div class="container">
+            <div class="row row-footer">
+                <div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Menu</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-6 col-sm-5">
+                    <h5>Our Address</h5>
+                    <address>
+                        121, Clear Water Bay Road<br>
+                        Clear Water Bay, Kowloon<br>
+                        HONG KONG<br>
+                        <i class="fa fa-phone"></i>: +852 1234 5678<br>
+                        <i class="fa fa-fax"></i>: +852 8765 4321<br>
+                        <i class="fa fa-envelope"></i>:
+                        <a href="mailto:confusion@food.net">confusion@food.net</a>
+                    </address>
+                </div>
+                <div class="nav navbar-nav" style="padding: 40px 10px;">
+                    <a class="btn btn-social-icon btn-google-plus" href="http://google.com/+"><i
+                            class="fa fa-google-plus"></i></a>
+                    <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i
+                            class="fa fa-facebook"></i></a>
+                    <a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i
+                            class="fa fa-linkedin"></i></a>
+                    <a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
+                    <a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube"></i></a>
+                    <a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
+                </div>
+                <div class="col-xs-12">
+                    <p style="padding:10px;"></p>
+
+                    <p align=center>Â© Copyright 2015 Ristorante Con Fusion</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>
