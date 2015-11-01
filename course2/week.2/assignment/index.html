@@ -189,6 +189,7 @@
             <form class="form-horizontal" role="form">
                 <div class="row form-group">
                     <label class="col-xs-12 col-sm-3 text-right" for="numberOfGuests">Number of Guests</label>
+
                     <div class="col-xs-12 col-sm-6" id="numberOfGuests">
                         <label class="radio-inline">
                             <input type="radio" id="inlineCheckbox1" value="option1"> 1
@@ -197,7 +198,7 @@
                             <input type="radio" id="inlineCheckbox2" value="option1"> 2
                         </label>
                         <label class="radio-inline">
-                        <input type="radio" id="inlineCheckbox3" value="option1"> 3
+                            <input type="radio" id="inlineCheckbox3" value="option1"> 3
                         </label>
                         <label class="radio-inline">
                             <input type="radio" id="inlineCheckbox4" value="option1"> 4
@@ -212,6 +213,7 @@
                 </div>
                 <div class="row form-group form-inline">
                     <label class="text-right col-xs-12 col-sm-3 bottom-right" for="dateAndTime">Date and Time</label>
+
                     <div id="dateAndTime">
                         <div class='input-group col-xs-12 col-sm-3'>
                             <input type='date' class="form-control" placeholder="Date"/>
@@ -230,6 +232,13 @@
                 </div>
                 <div class="row form-group">
                     <button type="submit" class="btn col-xs-12 col-lg-push-3 col-sm-1 btn-primary ">Reserve</button>
+                </div>
+                <div class="row">
+                    <div class="col-sm-offset-1  alert alert-warning alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <strong>Warning:</strong> Please <strong>call</strong> us to reserve for more than six guests.
+                    </div>
                 </div>
             </form>
 
