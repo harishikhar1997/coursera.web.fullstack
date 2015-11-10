@@ -2,3 +2,4 @@
 *.js
 *.iml
 .idea/
+**/node_modules/
