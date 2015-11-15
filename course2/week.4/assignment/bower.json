@@ -1,0 +1,28 @@
+{
+  "name": "conFusion",
+  "version": "1.0.0",
+  "description": "Sample webapplication for coursera.webapp.fullstack.uiComponents",
+  "main": "index.html",
+  "authors": [
+    "Stefan Scheffler"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "conFusion",
+    "Fusion",
+    "Restaurant"
+  ],
+  "homepage": "https://github.com/sscheffler/coursera.web.fullstack",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5",
+    "font-awesome": "~4.4.0"
+  }
+}
