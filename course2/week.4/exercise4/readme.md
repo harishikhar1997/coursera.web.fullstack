@@ -9,6 +9,7 @@
 ### Compiling less
 * Go into ./css/
 * Command: <b>lessc mystyles.less > mystyles.css</b>
+
 ### Install components with bower
 * Command: <b>bower install</b>
     * [bootstrap](http://getbootstrap.com/ "Bootstrap")
