@@ -1,0 +1,27 @@
+header{
+    background-color: rgba(50,100,0,0.8);
+    text-transform: uppercase;
+}
+
+h1 {
+    text-align: center;
+    color: rgba(200,0,0, 1);
+}
+
+h2 {
+    color: rgba(180,0,0,0.7);
+}
+
+a {
+    text-align: center;
+    background-color: rgba(74, 186, 115, 0.82);
+    color: rgba(50,100,0,0.8);
+}
+
+section {
+    background-color: rgba(50,100,0,0.6);
+}
+
+img {
+    display: none;
+}
