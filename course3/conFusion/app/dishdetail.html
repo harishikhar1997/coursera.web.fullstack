@@ -46,6 +46,9 @@
             </div>
         </div>
         <div class="col-xs-9 col-xs-offset-1">
+            <h3 style="display: inline-block; margin: 10px;">Comments</h3>
+            <label style="color: #269abc" for="orderComments">Sort by: </label>
+            <input style="display: inline-block; margin-left: 5px;" type="text" id="orderComments" placeholder="Order Criteria">
             <blockquote ng-repeat="element in detailCtrl.dish.comments">
                 <p>{{element.rating}} Stars</p>
                 <p>{{element.comment}}</p>
