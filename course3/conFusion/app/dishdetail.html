@@ -36,7 +36,6 @@
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading">"{{detailCtrl.dish.name}}"</h4>
-
                     <h2 class="media-heading">{{detailCtrl.dish.name}}
                         <span class="label label-danger">{{detailCtrl.dish.label}}</span>
                         <span class="badge">{{detailCtrl.dish.price | currency}}</span></h2>
@@ -46,11 +45,17 @@
             </div>
         </div>
         <div class="col-xs-9 col-xs-offset-1">
-            <h3 style="display: inline-block; margin: 10px;">Comments</h3>
-            <label style="color: #269abc" for="orderComments">Sort by: </label>
-            <input style="display: inline-block; margin-left: 5px;" type="text" id="orderComments" placeholder="Order Criteria">
-            <blockquote ng-repeat="element in detailCtrl.dish.comments">
+            <h3 style="display:inline-block; margin: 10px;">Comments</h3>
+            <form class="form-inline" style="display: inline-block">
+                <div class="form-group form-group-sm">
+                    <label style="color: #269abc" for="orderComments">Sort by: </label>
+                    <input class="form-control" ng-model="detailCtrl.orderCriteria" type="text"
+                           id="orderComments" placeholder="default: order criteria">
+                </div>
+            </form>
+            <blockquote ng-repeat="element in detailCtrl.dish.comments | orderBy: detailCtrl.orderCriteria">
                 <p>{{element.rating}} Stars</p>
+
                 <p>{{element.comment}}</p>
                 <footer>{{element.author}}, {{element.date | date: "MMM dd, yyyy"}}</footer>
             </blockquote>
@@ -109,6 +114,7 @@
         };
 
         this.dish = dish;
+        this.orderCriteria = '';
 
     });
 
