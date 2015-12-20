@@ -67,7 +67,7 @@
             <blockquote>
                 <p>{{actualComment.rating}} Stars</p>
 
-                <p>{{actualComment.comment}}</p>
+                <p ng-show="commentFormIsValid()" >{{actualComment.comment}}</p>
                 <footer>{{actualComment.author}}, {{actualComment.date | date: "MMM dd, yyyy"}}</footer>
             </blockquote>
 
