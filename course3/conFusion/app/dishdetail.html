@@ -26,20 +26,20 @@
 <body>
 
 <div class="container">
-    <div class="row row-content" ng-controller="dishDetailController as detailCtrl">
+    <div class="row row-content" ng-controller="DishDetailController">
         <div class="col-xs-12">
             <div class="media">
                 <div class="media-left media-middle">
                     <a href="#">
-                        <img class="media-object" src="{{detailCtrl.dish.image}}" alt="{{detailCtrl.dish.name}}">
+                        <img class="media-object" src="{{dish.image}}" alt="{{dish.name}}">
                     </a>
                 </div>
                 <div class="media-body">
-                    <h2 class="media-heading">{{detailCtrl.dish.name}}
-                        <span class="label label-danger">{{detailCtrl.dish.label}}</span>
-                        <span class="badge">{{detailCtrl.dish.price | currency}}</span></h2>
+                    <h2 class="media-heading">{{dish.name}}
+                        <span class="label label-danger">{{dish.label}}</span>
+                        <span class="badge">{{dish.price | currency}}</span></h2>
 
-                    <p>{{detailCtrl.dish.description}}</p>
+                    <p>{{dish.description}}</p>
                 </div>
             </div>
         </div>
@@ -48,11 +48,11 @@
             <form class="form-inline" style="display: inline-block">
                 <div class="form-group form-group-sm">
                     <label style="color: #269abc" for="orderComments">Sort by: </label>
-                    <input class="form-control" ng-model="detailCtrl.orderCriteria" type="text"
+                    <input class="form-control" ng-model="orderCriteria" type="text"
                            id="orderComments" placeholder="default: order criteria">
                 </div>
             </form>
-            <blockquote ng-repeat="element in detailCtrl.dish.comments | orderBy: detailCtrl.orderCriteria">
+            <blockquote ng-repeat="element in dish.comments | orderBy: orderCriteria">
                 <p>{{element.rating}} Stars</p>
 
                 <p>{{element.comment}}</p>
@@ -63,61 +63,10 @@
 
 </div>
 
+<!-- build:js scripts/main.js -->
 <script src="../bower_components/angular/angular.min.js"></script>
-<script>
-
-    var app = angular.module('confusionApp', []);
-
-    app.controller('dishDetailController', function () {
-
-        var dish = {
-            name: 'Uthapizza',
-            image: 'images/uthapizza.png',
-            category: 'mains',
-            label: 'Hot',
-            price: '4.99',
-            description: 'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.',
-            comments: [
-                {
-                    rating: 5,
-                    comment: "Imagine all the eatables, living in conFusion!",
-                    author: "John Lemon",
-                    date: "2012-10-16T17:57:28.556094Z"
-                },
-                {
-                    rating: 4,
-                    comment: "Sends anyone to heaven, I wish I could get my mother-in-law to eat it!",
-                    author: "Paul McVites",
-                    date: "2014-09-05T17:57:28.556094Z"
-                },
-                {
-                    rating: 3,
-                    comment: "Eat it, just eat it!",
-                    author: "Michael Jaikishan",
-                    date: "2015-02-13T17:57:28.556094Z"
-                },
-                {
-                    rating: 4,
-                    comment: "Ultimate, Reaching for the stars!",
-                    author: "Ringo Starry",
-                    date: "2013-12-02T17:57:28.556094Z"
-                },
-                {
-                    rating: 2,
-                    comment: "It's your birthday, we're gonna party!",
-                    author: "25 Cent",
-                    date: "2011-12-02T17:57:28.556094Z"
-                }
-
-            ]
-        };
-
-        this.dish = dish;
-        this.orderCriteria = '';
-
-    });
-
-</script>
+<script src="scripts/app.js"></script>
+<!-- endbuild -->
 
 </body>
 
