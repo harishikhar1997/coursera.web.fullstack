@@ -26,7 +26,7 @@
 <body>
 
 <div class="container" ng-controller="DishDetailController">
-    <div class="row row-content" >
+    <div class="row" >
         <div class="col-xs-12">
             <div class="media">
                 <div class="media-left media-middle">
@@ -62,47 +62,56 @@
         </div>
     </div>
 
-    <div class="row row-content" ng-controller="DishCommentController">
-        <form class="form-horizontal" name="commentForm" ng-submit="submitComment()" novalidate>
-            <div class="form-group"
-                 ng-class="{ 'has-error' : commentForm.name.$error.required && !commentForm.name.$pristine }">
-                <label for="name" class="col-sm-2 control-label">Your Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name"
-                           placeholder="Enter Your Name"
-                           ng-model="actualComment.name" required>
-                        <span ng-show="commentForm.name.$error.required && !commentForm.name.$pristine"
-                              class="help-block">Your name is required.</span>
+    <div class="row" ng-controller="DishCommentController">
+        <div class="col-xs-9 col-xs-offset-1">
+            <blockquote>
+                <p>{{actualComment.rating}} Stars</p>
+
+                <p>{{actualComment.comment}}</p>
+                <footer>{{actualComment.author}}, {{actualComment.date | date: "MMM dd, yyyy"}}</footer>
+            </blockquote>
+
+            <form class="form-horizontal" name="commentForm" ng-submit="submitComment()" novalidate>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : commentForm.name.$error.required && !commentForm.name.$pristine }">
+                    <label for="name" class="col-sm-2 control-label">Your Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name"
+                               placeholder="Enter Your Name"
+                               ng-model="actualComment.author" required>
+                            <span ng-show="commentForm.name.$error.required && !commentForm.name.$pristine"
+                                  class="help-block">Your name is required.</span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Number of Stars</label>
-                <div class="col-sm-10 btn-group" role="group">
-                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="actualComment.rating" value="1"> 1</label>
-                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="actualComment.rating" value="2"> 2</label>
-                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="actualComment.rating" value="3"> 3</label>
-                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="actualComment.rating" value="4"> 4</label>
-                    <label class="radio-inline"><input type="radio" name="optradio" ng-model="actualComment.rating" value="5"> 5</label>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Number of Stars</label>
+                    <div class="col-sm-10 btn-group" role="group">
+                        <label class="radio-inline"><input type="radio" name="optradio" ng-model="actualComment.rating" value="1"> 1</label>
+                        <label class="radio-inline"><input type="radio" name="optradio" ng-model="actualComment.rating" value="2"> 2</label>
+                        <label class="radio-inline"><input type="radio" name="optradio" ng-model="actualComment.rating" value="3"> 3</label>
+                        <label class="radio-inline"><input type="radio" name="optradio" ng-model="actualComment.rating" value="4"> 4</label>
+                        <label class="radio-inline"><input type="radio" name="optradio" ng-model="actualComment.rating" value="5"> 5</label>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group"
-                 ng-class="{ 'has-error' : commentForm.comment.$error.required && !commentForm.comment.$pristine }">
-                <label for="comment" class="col-sm-2 control-label">Your Comments</label>
-                <div class="col-sm-10">
-                    <textarea id="comment" name="comment" class="form-control" rows="12"
-                              ng-model="actualComment.comment" required>
-                    </textarea>
-                    <span ng-show="commentForm.comment.$error.required && !commentForm.comment.$pristine"
-                          class="help-block">A proper comment is required.</span>
+                <div class="form-group"
+                     ng-class="{ 'has-error' : commentForm.comment.$error.required && !commentForm.comment.$pristine }">
+                    <label for="comment" class="col-sm-2 control-label">Your Comments</label>
+                    <div class="col-sm-10">
+                        <textarea id="comment" name="comment" class="form-control" rows="12"
+                                  ng-model="actualComment.comment" required>
+                        </textarea>
+                        <span ng-show="commentForm.comment.$error.required && !commentForm.comment.$pristine"
+                              class="help-block">A proper comment is required.</span>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-primary" ng-disabled="commentForm.$invalid">Submit Comment
-                    </button>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary" ng-disabled="commentForm.$invalid">Submit Comment
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
 
 </div>
