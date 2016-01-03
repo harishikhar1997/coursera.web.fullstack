@@ -20,11 +20,15 @@ angular.module('confusionApp')
             return $resource(baseURL+"dishes/:id",null,  {'update':{method:'PUT' }});
         };
 
+        this.getPromotions = function(index){
+            return $resource(baseURL+"promotions/:id",null,  {'update':{method:'PUT' }});
+        };
+
         // implement a function named getPromotion
         // that returns a selected promotion.
-        this.getPromotion = function (index) {
-            return promotions[index];
-        };
+        //this.getPromotion = function (index) {
+        //    return promotions[index];
+        //};
 
     }])
     .factory('corporateFactory', function () {
