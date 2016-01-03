@@ -107,8 +107,21 @@ angular.module('confusionApp')
 
     // implement the IndexController and About Controller here
     .controller('IndexController', ['$scope', 'corporateFactory', 'menuFactory', function ($scope, corporateFactory, menuFactory) {
-        $scope.chef = corporateFactory.getLeader(3);
         $scope.showPromotion=false;
+        $scope.showChef=false;
+        $scope.chef = corporateFactory.getLeadership().get({id:3})
+            .$promise.then(
+            //succcess
+            function(response){
+                $scope.chef = response;
+                $scope.showChef = true;
+            },
+            //error
+            function(response){
+                $scope.chefErrorMessage = "Error: "+response.status + " " + response.statusText;
+            }
+        );
+
         $scope.promotion = menuFactory.getPromotions().get({id:0})
             .$promise.then(
             //succcess
@@ -118,7 +131,7 @@ angular.module('confusionApp')
             },
             //error
             function(response){
-                $scope.message = "Error: "+response.status + " " + response.statusText;
+                $scope.promotionErrorMessage = "Error: "+response.status + " " + response.statusText;
             }
         );
 
@@ -137,7 +150,16 @@ angular.module('confusionApp')
     }])
 
     .controller('AboutController', ['$scope', 'corporateFactory', function ($scope, corporateFactory) {
-        $scope.leaders = corporateFactory.getLeaders();
+        $scope.showLeaders=false;
+        corporateFactory.getLeadership().query(
+            function(response){
+                $scope.leaders = response;
+                $scope.showLeaders = true;
+            },
+            function(response) {
+                $scope.leadersErrorMessage = "Error: "+response.status + " " + response.statusText;
+            }
+        );
     }])
 
 
