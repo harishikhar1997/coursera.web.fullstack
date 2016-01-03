@@ -20,4 +20,12 @@ angular.module('confusionApp')
 
     }])
 
+    .service('feedbackService', ['$resource', 'baseURL', function($resource,baseURL) {
+
+        this.getFeedback = function(index){
+            return $resource(baseURL+"feedback/",null,  {'save':{method:'POST' }});
+        };
+
+    }])
+
 ;

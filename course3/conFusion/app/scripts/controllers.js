@@ -56,7 +56,9 @@ angular.module('confusionApp')
 
     }])
 
-    .controller('FeedbackController', ['$scope', function ($scope) {
+    .controller('FeedbackController', ['$scope', 'feedbackService', function ($scope, feedbackService) {
+
+        $scope.fbService = feedbackService.getFeedback();
 
         $scope.sendFeedback = function () {
 
@@ -68,10 +70,11 @@ angular.module('confusionApp')
             }
             else {
                 $scope.invalidChannelSelection = false;
+                $scope.fbService.save($scope.feedback);
+                console.log($scope.feedback);
                 $scope.feedback = {mychannel: "", firstName: "", lastName: "", agree: false, email: ""};
                 $scope.feedback.mychannel = "";
                 $scope.feedbackForm.$setPristine();
-                console.log($scope.feedback);
             }
         };
     }])
