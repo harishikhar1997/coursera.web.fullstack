@@ -3,7 +3,7 @@
  */
 var dishRouter = require('./dishRouter'),
     promoRouter = require('./promoRouter'),
-    leadershipRouter = require('./leadershipRouter'),
+    leadershipRouter = require('./leaderRouter'),
     express = require('express'),
     morgan = require('morgan');
 var serverCredentials = {host: 'localhost', port: 3000};
