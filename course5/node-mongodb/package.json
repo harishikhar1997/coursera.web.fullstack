@@ -1,5 +1,5 @@
 {
-  "name": "node-express-gen",
+  "name": "node-mongodb",
   "version": "0.0.0",
   "private": true,
   "scripts": {
