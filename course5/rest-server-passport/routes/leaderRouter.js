@@ -1,18 +1,18 @@
 var express = require('express'),
 bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
+var Verify = require('./verify');
 var leadership = express.Router();
 leadership.use(bodyParser.json());
 var Leaders = require('../models/leadership');
 leadership.route('/')
-    .get(function (req, res, next) {
+    .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         Leaders.find({}, function (err, dish) {
             if (err) throw err;
             res.json(dish);
         });
     })
-    .post(function (req, res, next) {
+    .post(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Leaders.create(req.body, function (err, dish) {
             if (err) throw err;
             console.log('Dish created!');
@@ -24,7 +24,7 @@ leadership.route('/')
             res.end('Added the dish with id: ' + id);
         });
     })
-    .delete(function (req, res, next) {
+    .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Leaders.remove({}, function (err, resp) {
             if (err) throw err;
             res.json(resp);
@@ -33,7 +33,7 @@ leadership.route('/')
     });
 
 leadership.route('/:leaderId')
-    .get(function (req, res, next) {
+    .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         Leaders.findById(req.params.dishId, function (err, dish) {
             if (err) throw err;
             res.json(dish);
@@ -41,7 +41,7 @@ leadership.route('/:leaderId')
 
     })
 
-    .put(function (req, res, next) {
+    .put(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Leaders.findByIdAndUpdate(req.params.dishId, {
             $set: req.body
         }, {
@@ -52,7 +52,7 @@ leadership.route('/:leaderId')
         });
     })
 
-    .delete(function (req, res, next) {
+    .delete(Verify.verifyOrdinaryUser, Verify.verifyAdmin, function (req, res, next) {
         Leaders.findByIdAndRemove(req.params.dishId, function (err, resp) {        if (err) throw err;
             res.json(resp);
         });
