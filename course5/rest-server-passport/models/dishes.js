@@ -35,9 +35,20 @@ var currencyType = function (required) {
 };
 
 var commentSchema = new Schema({
-    rating: numberType(1, 5),
-    comment: stringTypeNotUnique(),
-    author: stringTypeNotUnique()
+    rating:  {
+        type: Number,
+        min: 1,
+        max: 5,
+        required: true
+    },
+    comment:  {
+        type: String,
+        required: true
+    },
+    postedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }
 }, {
     timestamps: true
 });
