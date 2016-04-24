@@ -1,4 +1,11 @@
-dishRouter.route('/')
+var express = require('express');
+var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var Verify = require('./verify');
+var Dishes = require('../models/dishes');
+
+var dishRouter = express.Router();
+dishRouter.use(bodyParser.json());dishRouter.route('/')
     .get(Verify.verifyOrdinaryUser, function (req, res, next) {
         Dishes.find({})
             .populate('comments.postedBy')
@@ -140,3 +147,5 @@ dishRouter.route('/:dishId/comments/:commentId')
             });
         });
     });
+
+module.exports = dishRouter;

@@ -59,7 +59,7 @@ var dishSchema = new Schema({
     name: stringTypeUnique(),
     image: stringTypeUnique(),
     category: stringTypeUnique(),
-    label: {
+    user: {
         type: String,
         unique: true,
         default: ''
